@@ -145,12 +145,12 @@ https://hackmd.io/@Bmj6Z_QbTMy769jUvLGShA/VRDL_HW3
 
 ### Reference
 
-[mmdetection github](https://github.com/open-mmlab/mmdetection/tree/master/configs/cascade_rcnn)
-[建置到訓練](http://lanck.lzu.edu.cn/?p=490)
-https://cxyzjd.com/article/Skies_/108142131
-https://github.com/open-mmlab/mmdetection/tree/master/configs/cascade_rcnn
-https://arxiv.org/pdf/1906.09756.pdf
-https://www.itread01.com/content/1547120287.html
+* [mmdetection github](https://github.com/open-mmlab/mmdetection/tree/master/configs/cascade_rcnn)
+* [建置到訓練](http://lanck.lzu.edu.cn/?p=490)
+* https://cxyzjd.com/article/Skies_/108142131
+* https://github.com/open-mmlab/mmdetection/tree/master/configs/cascade_rcnn
+* https://arxiv.org/pdf/1906.09756.pdf
+* https://www.itread01.com/content/1547120287.html
 
 
 
