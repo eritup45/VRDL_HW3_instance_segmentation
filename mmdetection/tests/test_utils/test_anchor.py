@@ -279,7 +279,7 @@ def test_standard_anchor_generator():
 
     anchor_generator = build_anchor_generator(anchor_generator_cfg)
     assert anchor_generator.num_base_priors == \
-           anchor_generator.num_base_anchors
+        anchor_generator.num_base_anchors
     assert anchor_generator.num_base_priors == [3, 3]
     assert anchor_generator is not None
 

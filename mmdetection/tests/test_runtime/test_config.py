@@ -204,7 +204,7 @@ def _check_bbox_head(bbox_cfg, bbox_head):
                 if bbox_head.custom_cls_channels:
                     assert (bbox_head.loss_cls.get_cls_channels(
                         bbox_head.num_classes) == bbox_head.fc_cls.out_features
-                            )
+                    )
                 else:
                     assert (bbox_cfg.num_classes +
                             1 == bbox_head.fc_cls.out_features)

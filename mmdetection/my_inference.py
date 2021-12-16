@@ -3,9 +3,12 @@ import json
 from mmdet.apis import init_detector, inference_detector, show_result_pyplot
 from pycocotools.mask import encode, decode, area, toBbox
 
+
 def convert(o):
-    if isinstance(o, np.generic): return o.item()  
+    if isinstance(o, np.generic):
+        return o.item()
     raise TypeError
+
 
 def produce_coco_result(image_id, bbox, score, RLE):
     result = {
@@ -17,7 +20,8 @@ def produce_coco_result(image_id, bbox, score, RLE):
     }
     return result
 
-images=[
+
+images = [
     'TCGA-A7-A13E-01Z-00-DX1.png',
     'TCGA-50-5931-01Z-00-DX1.png',
     'TCGA-G2-A2EK-01A-02-TSB.png',
@@ -25,7 +29,7 @@ images=[
     'TCGA-G9-6336-01Z-00-DX1.png',
     'TCGA-G9-6348-01Z-00-DX1.png',
 ]
-images = ['./data/coco/test2017/test/' +  img for img in images]
+images = ['./data/coco/test2017/test/' + img for img in images]
 
 config_file = './config_cascade_mask_rcnn_50.py'
 # 1212 mAP:0.06
@@ -44,11 +48,10 @@ model = init_detector(config_file, checkpoint_file, device=device)
 preds = inference_detector(model, images)
 
 
-
 results = []
 for i, res in enumerate(preds):
-    bbox_scores = iter(res[0][0]) # bbox results
-    masks = iter(res[1][0]) # Segmentation results
+    bbox_scores = iter(res[0][0])  # bbox results
+    masks = iter(res[1][0])  # Segmentation results
     for j in range(len(res[0][0])):
         # Get result one by one
         bbox_score = next(bbox_scores)
@@ -95,9 +98,8 @@ with open('./answer.json', 'w') as fp:
     #     print(RLE)
 
 
-
 # DEBUG
-# OUT: 
+# OUT:
 # len(preds): 6 pictures
 # len(preds[0]): 2 tasks (bbox + mask)
 # len(preds[0][0]): 1 (No meaning here??)
@@ -105,4 +107,4 @@ with open('./answer.json', 'w') as fp:
 print(f'len(preds): {len(preds)}')
 print(f'len(preds[0]): {len(preds[0])}')
 print(f'len(preds[0][0]): {len(preds[0][0])}')
-print(f'len(preds[0][0][0]): {len(preds[0][0][0])}') 
+print(f'len(preds[0][0][0]): {len(preds[0][0][0])}')

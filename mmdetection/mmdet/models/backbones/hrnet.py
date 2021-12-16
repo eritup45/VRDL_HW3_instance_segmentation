@@ -318,7 +318,7 @@ class HRNet(BaseModule):
         for i in range(4):
             cfg = extra[f'stage{i + 1}']
             assert len(cfg['num_blocks']) == cfg['num_branches'] and \
-                   len(cfg['num_channels']) == cfg['num_branches']
+                len(cfg['num_channels']) == cfg['num_branches']
 
         self.extra = extra
         self.conv_cfg = conv_cfg

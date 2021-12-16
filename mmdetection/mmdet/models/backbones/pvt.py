@@ -463,7 +463,7 @@ class PyramidVisionTransformer(BaseModule):
         self.strides = strides
         self.sr_ratios = sr_ratios
         assert num_stages == len(num_layers) == len(num_heads) \
-               == len(patch_sizes) == len(strides) == len(sr_ratios)
+            == len(patch_sizes) == len(strides) == len(sr_ratios)
 
         self.out_indices = out_indices
         assert max(out_indices) < self.num_stages

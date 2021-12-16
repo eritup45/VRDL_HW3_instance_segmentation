@@ -458,7 +458,7 @@ class YOLOV3Head(BaseDenseHead, BBoxTestMixin):
 
         anchor_strides = torch.cat(anchor_strides)
         assert len(anchor_strides) == len(concat_anchors) == \
-               len(concat_responsible_flags)
+            len(concat_responsible_flags)
         assign_result = self.assigner.assign(concat_anchors,
                                              concat_responsible_flags,
                                              gt_bboxes)

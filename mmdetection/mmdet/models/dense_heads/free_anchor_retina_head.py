@@ -128,7 +128,7 @@ class FreeAnchorRetinaHead(RetinaHead):
                     indices = torch.stack([
                         torch.arange(num_obj).type_as(gt_labels_), gt_labels_
                     ],
-                                          dim=0)
+                        dim=0)
                     object_cls_box_prob = torch.sparse_coo_tensor(
                         indices, object_box_prob)
 

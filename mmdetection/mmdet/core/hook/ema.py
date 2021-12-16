@@ -66,7 +66,7 @@ class BaseEMAHook(Hook):
 
     def get_momentum(self, runner):
         return self.momentum_fun(runner.iter) if self.momentum_fun else \
-                        self.momentum
+            self.momentum
 
     def after_train_iter(self, runner):
         """Update ema parameter every self.interval iterations."""

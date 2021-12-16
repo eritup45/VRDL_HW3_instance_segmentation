@@ -106,9 +106,9 @@ def test_center_of_mass(mask):
         assert center_h == 1.5
         assert center_w == 1.5
     assert isinstance(center_h, torch.Tensor) \
-           and isinstance(center_w, torch.Tensor)
+        and isinstance(center_w, torch.Tensor)
     assert 0 <= center_h <= 28 \
-           and 0 <= center_w <= 28
+        and 0 <= center_w <= 28
 
 
 def test_flip_tensor():

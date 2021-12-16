@@ -134,7 +134,7 @@ model = dict(
         rpn=dict(
             assigner=dict(
                 type='MaxIoUAssigner',
-                gpu_assign_thr = 150,)),
+                gpu_assign_thr=150,)),
         rpn_proposal=dict(
             nms_pre=2000,
             max_per_img=2000,
@@ -144,7 +144,7 @@ model = dict(
             dict(
                 assigner=dict(
                     type='MaxIoUAssigner',
-                    gpu_assign_thr = 50,
+                    gpu_assign_thr=50,
                     pos_iou_thr=0.5,
                     neg_iou_thr=0.5,
                     min_pos_iou=0.5,
@@ -161,7 +161,7 @@ model = dict(
             dict(
                 assigner=dict(
                     type='MaxIoUAssigner',
-                    gpu_assign_thr = 50,
+                    gpu_assign_thr=50,
                     pos_iou_thr=0.6,
                     neg_iou_thr=0.6,
                     min_pos_iou=0.6,
@@ -178,7 +178,7 @@ model = dict(
             dict(
                 assigner=dict(
                     type='MaxIoUAssigner',
-                    gpu_assign_thr = 50,
+                    gpu_assign_thr=50,
                     pos_iou_thr=0.7,
                     neg_iou_thr=0.7,
                     min_pos_iou=0.7,
@@ -204,7 +204,7 @@ data = dict(
         classes=classes,
         ann_file='data/coco/annotations/train_coco.json',
         # seg_prefix='data/coco/train2017/train_pic/'
-        ),
+    ),
     val=dict(
         img_prefix='data/coco/val2017/val_pic/',
         classes=classes,

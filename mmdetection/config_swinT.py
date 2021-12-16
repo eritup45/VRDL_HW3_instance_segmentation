@@ -8,12 +8,12 @@ model = dict(
     train_cfg=dict(
         rpn=dict(
             assigner=dict(
-                gpu_assign_thr = 50,
+                gpu_assign_thr=50,
             ),
         ),
         rcnn=dict(
             assigner=dict(
-                gpu_assign_thr = 50,
+                gpu_assign_thr=50,
             ),
         )
     )
@@ -69,4 +69,3 @@ load_from = './work_dirs/1213_ep16_mask_rcnn_swin-t/epoch_36.pth'
 
 # 1213_ep
 work_dir = './work_dirs/1214_ep72_new_mask_rcnn_swin-t'
-

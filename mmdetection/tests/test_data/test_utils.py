@@ -77,4 +77,4 @@ def test_get_loading_pipeline():
         dict(type='LoadAnnotations', with_bbox=True)
     ]
     assert expected_pipelines == \
-           get_loading_pipeline(pipelines)
+        get_loading_pipeline(pipelines)

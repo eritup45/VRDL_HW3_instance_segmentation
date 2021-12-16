@@ -118,7 +118,7 @@ def test_rotate():
         np.ones((h, w)) * img_fill_val[1],
         np.ones((h, w)) * img_fill_val[2]
     ],
-                     axis=-1).astype(np.uint8)
+        axis=-1).astype(np.uint8)
     img_r[0, 0, :] = 1
     img_r[0, 1, :] = 5
     results_gt['img'] = img_r

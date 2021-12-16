@@ -733,7 +733,7 @@ class VFNetHead(ATSSHead, FCOSHead):
         if self.use_atss:
             points = torch.stack(
                 (x.reshape(-1), y.reshape(-1)), dim=-1) + \
-                     stride * self.anchor_center_offset
+                stride * self.anchor_center_offset
         else:
             points = torch.stack(
                 (x.reshape(-1), y.reshape(-1)), dim=-1) + stride // 2

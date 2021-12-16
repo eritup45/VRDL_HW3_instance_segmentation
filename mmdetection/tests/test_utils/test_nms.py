@@ -33,25 +33,25 @@ def test_nms_input_errors():
     score, label, mask, keep_ind = \
         mask_matrix_nms(masks, labels, scores)
     assert len(score) == len(label) == \
-           len(mask) == len(keep_ind) == 0
+        len(mask) == len(keep_ind) == 0
 
     # do not use update_thr, nms_pre and max_num
     masks, labels, scores = _create_mask(1000, 28, 28)
     score, label, mask, keep_ind = \
         mask_matrix_nms(masks, labels, scores)
     assert len(score) == len(label) == \
-           len(mask) == len(keep_ind) == 1000
+        len(mask) == len(keep_ind) == 1000
     # only use nms_pre
     score, label, mask, keep_ind = \
         mask_matrix_nms(masks, labels, scores, nms_pre=500)
     assert len(score) == len(label) == \
-           len(mask) == len(keep_ind) == 500
+        len(mask) == len(keep_ind) == 500
     # use max_num
     score, label, mask, keep_ind = \
         mask_matrix_nms(masks, labels, scores,
                         nms_pre=500, max_num=100)
     assert len(score) == len(label) == \
-           len(mask) == len(keep_ind) == 100
+        len(mask) == len(keep_ind) == 100
 
     masks, labels, _ = _create_mask(1, 28, 28)
     scores = torch.Tensor([1.0])

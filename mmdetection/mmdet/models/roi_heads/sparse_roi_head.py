@@ -268,7 +268,7 @@ class SparseRoIHead(CascadeRoIHead):
 
             for key, value in single_stage_loss.items():
                 all_stage_loss[f'stage{stage}_{key}'] = value * \
-                                    self.stage_loss_weights[stage]
+                    self.stage_loss_weights[stage]
             object_feats = bbox_results['object_feats']
 
         return all_stage_loss

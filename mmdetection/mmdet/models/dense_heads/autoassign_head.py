@@ -109,16 +109,16 @@ class CenterPrior(nn.Module):
             if gt_inds_no_points_inside.numel():
                 topk_center_index = \
                     center_prior_weights[:, gt_inds_no_points_inside].topk(
-                                                             self.topk,
-                                                             dim=0)[1]
+                        self.topk,
+                        dim=0)[1]
                 temp_mask = inside_gt_bbox_mask[:, gt_inds_no_points_inside]
                 inside_gt_bbox_mask[:, gt_inds_no_points_inside] = \
                     torch.scatter(temp_mask,
                                   dim=0,
                                   index=topk_center_index,
                                   src=torch.ones_like(
-                                    topk_center_index,
-                                    dtype=torch.bool))
+                                      topk_center_index,
+                                      dtype=torch.bool))
 
         center_prior_weights[~inside_gt_bbox_mask] = 0
         return center_prior_weights, inside_gt_bbox_mask

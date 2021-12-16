@@ -116,7 +116,7 @@ def test_sparse_rcnn_forward():
         # test no proposal in the whole batch
         detector.roi_head.simple_test([imgs[0][None, :]], torch.empty(
             (1, 0, 4)), torch.empty((1, 100, 4)), [img_metas[0]],
-                                      torch.ones((1, 4)))
+            torch.ones((1, 4)))
 
 
 def test_rpn_forward():

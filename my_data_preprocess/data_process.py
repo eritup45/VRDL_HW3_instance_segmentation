@@ -11,8 +11,10 @@ from pycocotools.mask import encode, decode, area, toBbox
 
 
 def convert(o):
-    if isinstance(o, np.generic): return o.item()  
+    if isinstance(o, np.generic):
+        return o.item()
     raise TypeError
+
 
 def ans_prttier():
     with open('./answer.json') as fp:
@@ -22,6 +24,7 @@ def ans_prttier():
 
     with open('./answer_prettyprint.json', 'w') as fp:
         fp.write(res)
+
 
 def split_train_val():
     src = './train/'
@@ -36,6 +39,7 @@ def split_train_val():
         if img_id < 3:
             print(f'Move {src + file_name} to {dst}')
             shutil.move(src + file_name, dst)
+
 
 def get_mask_info(mask_img):
     """
@@ -58,8 +62,9 @@ def get_mask_info(mask_img):
     # Convert bytes to str
     trans = encoded['counts'].decode("utf-8")
     encoded['counts'] = trans
-    
+
     return encoded, rle_area, bbox
+
 
 def combine_coco(images_coco, categories_coco, annotations_coco):
     result = {
@@ -138,7 +143,6 @@ def combine_coco(images_coco, categories_coco, annotations_coco):
     """
 
 
-
 def get_image_coco_fmt(id, width, height, file_name):
     image = {
         "id": id,
@@ -148,6 +152,7 @@ def get_image_coco_fmt(id, width, height, file_name):
     }
     return image
 
+
 def get_category_coco_fmt():
     categories = {
         "id": 0,
@@ -155,6 +160,7 @@ def get_category_coco_fmt():
         "supercategory": "nucleus",
     }
     return categories
+
 
 def get_annotation_coco_fmt(mask_id, image_id, RLE, area, bbox):
     annotation = {
@@ -168,7 +174,8 @@ def get_annotation_coco_fmt(mask_id, image_id, RLE, area, bbox):
     }
     return annotation
 
-def produce_trainval_coco_json(train_path = './train/', val=False):
+
+def produce_trainval_coco_json(train_path='./train/', val=False):
     # produce annotated json file in coco format (for instance segmentation)
     train_filenames = next(os.walk(train_path))[1]
 
@@ -181,7 +188,7 @@ def produce_trainval_coco_json(train_path = './train/', val=False):
     for img_id, file_name in tqdm(enumerate(train_filenames), total=len(train_filenames)):
         pic_path = train_path + file_name + '/images/' + file_name + '.png'
         mask_path = train_path + file_name + '/masks/'
-        img = cv2.imread(pic_path)[...,::-1]
+        img = cv2.imread(pic_path)[..., ::-1]
         img_h, img_w, _ = img.shape
 
         image = get_image_coco_fmt(img_id, img_w, img_h, file_name + '.png')
@@ -192,7 +199,8 @@ def produce_trainval_coco_json(train_path = './train/', val=False):
             mask = cv2.imread(mask_path + mask_filename, cv2.IMREAD_GRAYSCALE)
             encoded, rle_area, bbox = get_mask_info(mask)
 
-            annotation = get_annotation_coco_fmt(mask_counts, img_id, encoded, rle_area, bbox)
+            annotation = get_annotation_coco_fmt(
+                mask_counts, img_id, encoded, rle_area, bbox)
             annotations_coco.append(annotation)
             # print(annotation)
             mask_counts += 1
@@ -200,9 +208,11 @@ def produce_trainval_coco_json(train_path = './train/', val=False):
     result = combine_coco(images_coco, categories_coco, annotations_coco)
 
     json_filename = './val_coco.json' if val else './train_coco.json'
-    result_coco = json.dumps(result, indent=4, sort_keys=False, default=convert)
+    result_coco = json.dumps(
+        result, indent=4, sort_keys=False, default=convert)
     with open(json_filename, 'w') as fp:
         fp.write(result_coco)
+
 
 def produce_test_coco_json(img_order_ref='./test_img_ids.json'):
     images_coco, categories_coco, annotations_coco = [], [], []
@@ -215,11 +225,10 @@ def produce_test_coco_json(img_order_ref='./test_img_ids.json'):
         images_coco = json.loads(res)
 
     result = combine_coco(images_coco, categories_coco, annotations_coco)
-    result_coco = json.dumps(result, indent=4, sort_keys=False, default=convert)
+    result_coco = json.dumps(
+        result, indent=4, sort_keys=False, default=convert)
     with open('./test_coco.json', 'w') as fp:
         fp.write(result_coco)
-
-             
 
 
 # def produce_test_coco_json(path='./test/'):
@@ -230,7 +239,7 @@ def produce_test_coco_json(img_order_ref='./test_img_ids.json'):
 
 #     category = get_category_coco_fmt()
 #     categories_coco.append(category)
-    
+
 #     for img_id, file_name in enumerate(test_filenames):
 #         pic_path = path + file_name
 #         # mask_path = train_path + file_name + '/masks/'
@@ -239,7 +248,7 @@ def produce_test_coco_json(img_order_ref='./test_img_ids.json'):
 
 #         image = get_image_coco_fmt(img_id, img_w, img_h, file_name)
 #         images_coco.append(image)
-    
+
 #     result = combine_coco(images_coco, categories_coco, annotations_coco)
 #     result_coco = json.dumps(result, indent=4, sort_keys=False, default=convert)
 #     with open('./test_coco.json', 'w') as fp:
@@ -256,6 +265,7 @@ def organize_pic_folder(path, val=False):
         shutil.copy(pic_path, dst_folder)
         print(f'{pic_path} 2 {dst_folder}')
 
+
 def main():
     train_path = './train/'
     val_path = './val/'
@@ -267,6 +277,7 @@ def main():
 
     organize_pic_folder(train_path)
     organize_pic_folder(val_path, val=True)
+
 
 if __name__ == '__main__':
     # split_train_val()
